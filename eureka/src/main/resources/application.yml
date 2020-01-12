@@ -1,0 +1,23 @@
+---
+
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka-server
+eureka:
+  client:
+    registerWithEureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+zuul:
+  prefix: /api
+  routes:
+    customer-service:
+      path: /customer-service/**
+      url: http://localhost:8080
+    item-service:
+      path: /item-service/**
+      url: http://localhost:9090
